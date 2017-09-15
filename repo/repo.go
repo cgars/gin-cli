@@ -239,6 +239,7 @@ func (repocl *Client) Upload(paths []string) error {
 
 	if len(paths) > 0 {
 		_, err = AnnexAdd(paths)
+		RunGitCommand(append([]string{"add"}, paths...)...)
 		if err != nil {
 			return err
 		}

@@ -259,7 +259,7 @@ type AnnexAddResult struct {
 // Setting the Workingdir package global affects the working directory in which the command is executed.
 // (git annex add)
 func AnnexAdd(filepaths []string) ([]string, error) {
-	cmdargs := []string{"--json", "add"}
+	cmdargs := []string{"--json", fmt.Sprintf("--largerthan=%s", util.Config.Annex.MinSize), "add"}
 	cmdargs = append(cmdargs, filepaths...)
 	stdout, stderr, err := RunAnnexCommand(cmdargs...)
 	if err != nil {
